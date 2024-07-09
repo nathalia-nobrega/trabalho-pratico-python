@@ -1,0 +1,78 @@
+Primeiros passos:
+    1. Ler o caminho do arquivo da linha de comando (função Utils)
+    2. Ler os arquivos dentro da pasta informada e retornar os dados (função Utils)
+    3. Separar cada tipo de estatística em arquivos diferentes. Exemplo:
+        . estatisticas_turma.py
+        . estatisticas_global.py
+        . estatisticas_aluno.py
+    4. Um arquivo main será responsável pela execução do projeto.
+
+Dicionários:
+
+    disciplinas = {
+        'CÓDIGO': {
+            'nome': ..., [string]
+            'média_mínima': ..., [float]
+            'pesos_av': [...], [floats]
+            'quantidade_alunos': ..., [int]
+            'percentual_alunos_aprovados': ... [armazena como float, mas formata na hora de printar]
+            'media_turma': ... [float]
+        }
+    }
+
+    alunos_turmas = {
+        'MATRÍCULA': {
+            matriculado_em: [...], [ints]
+            'media': [...], [floats]
+            'aprovado': [...], [booleans] (o index desta lista equivale ao index do código da turma em matriculado_em)
+        }
+    }
+
+
+1. Para cada turma (arquivo CSV):
+    1. Código, nome, quantidade de alunos e alunos aprovados (%)
+        Funções:
+            1. Ler código, nome, média, pesos e quantidade de alunos
+            2. Ler matrícula e notas do aluno
+            3. Calcular a média do aluno
+            4. Inserir no dicionário alunos_turma as informações acima (matrícula, média e código da turma em 'matriculado_em')
+            5. Verificar se o aluno está aprovado e incrementar na variável de aprovados
+            6. Inserir no dicionário disciplinas as informações acima
+    2. Média da turma e quantidade de alunos com média acima dela
+        Funções:
+            1. Calcular a média da turma (retorna a média)
+            2. Verifica quantos alunos estão com média acima da média da turma (sem return)
+    3. Maior e Menor média dos alunos da turma
+        Funções:
+            1. Colocar as médias em uma lista e tirar o min() e max() (sem return)
+
+2. Estatísticas globais, relacionadas a todas as turmas do professor:
+    1. Média global e Percentual de aprovação do professor
+        Funções:
+            1. Iterar sobre o dicionário disciplinas e pegar os valores das médias das turmas (para Média global, sem return)
+            2. Iterar sobre o dicionário disciplinas e pegar os valores % de aprovação de cada turma (para % de aprovação do professor, sem return)
+    2. Quantidade de alunos matriculados em mais de 2 disciplinas do professor
+        Funções:
+            1. Iterar sobre o dicionário alunos_turmas e verificar a existência de mais de um código em 'matriculado_em' (retorna a quantidade)
+    3. Quantidade e percentual de alunos aprovados em TODAS as disciplinas que estavam matriculados
+        Lógica:
+            1. Iterar sobre o dicionaŕio alunos_turmas e verificar por um 'aprovado' onde todos os valores são 'true'
+            2. Incrementar em uma variável que representa a quantidade
+            3. Para chegar ao percentual, é necessário fazer a divisão com o número de alunos no total, de todas as disciplinas.
+            4. Para pegar o número total dos alunos das disciplinas, iterar sobre o dict disciplinas e pegar a quantidade de alunos.
+    4. Disciplinas com a maior e a menor taxa de aprovação: Nome e taxa
+        Lógica:
+            1. Iterar sobre o dicionário disciplinas e pegar o valor 'percentual_alunos_aprovados' e o 'nome'
+            2. O primeiro valor será o maior
+            3. Comparar o valor atual sendo iterado com o maior valor
+
+3. Estatísticas do aluno
+    1. Taxa de aprovação. Exemplo: Um aluno matriculado em 2 disciplinas e que foi aprovado
+    apenas em uma teve 50% de taxa de aprovação
+        Lógica:
+            1. Pegar a quantidade de disciplinas aprovadas (por meio da lista 'aprovado') e dividí-la pela quantidade de disciplinas
+            cursadas (por meio da lista 'matriculado_em') * 100
+    2. Disciplinas nas quais obteve a sua melhor média – nome e média
+        Lógica de comparação, igual a de disciplinas com maior e menor taxa de aprovação.
+    3. Disciplinas nas quais obteve a sua pior média – nome e média
+        Lógica de comparação, igual a de disciplinas com maior e menor taxa de aprovação.
