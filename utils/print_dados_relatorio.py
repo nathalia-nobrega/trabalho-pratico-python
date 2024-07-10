@@ -1,7 +1,8 @@
 """
     Este arquivo serve para formatar a saída dos dados para o relatório final
 """
-from main.estatisticas.estatisticas_turma import getMediasAlunos, calculate_above_average, maior_menor_media
+import main.estatisticas.estatisticas_global as glb
+import main.estatisticas.estatisticas_turma as tur
 
 
 def print_disciplina_dados(disciplinas, alunos):
@@ -11,15 +12,24 @@ def print_disciplina_dados(disciplinas, alunos):
         qtd_alunos = values[1]
         perc_aprovacao = f'{values[2]:.1f}%'
         media_turma = f'{values[3]:.1f}'
+        medias_alunos = tur.getMediasAlunos(alunos, key)
 
+        print(f"""
+    {nome}, {key}
 
-        print(f'\n\tDisciplina - {nome}')
-        print(f"\t\tCódigo: {key}\n\t\tN° de estudantes: {qtd_alunos}\n\t\t% de aprovados: {perc_aprovacao}\n\t\tMédia da turma: {media_turma}")
-
-        medias_alunos = getMediasAlunos(alunos, key)
-        calculate_above_average(float(media_turma), medias_alunos)
-        maior_menor_media(alunos, key)
+        # N° de estudantes: {qtd_alunos}
+        # % de aprovados: {perc_aprovacao}
+        # Média da turma: {media_turma}
+        """)
+        tur.calculate_above_average(float(media_turma), medias_alunos)
+        tur.maior_menor_media(alunos, key)
         print('\n\t------------------------------------------------')
 
 
-    print('\n\t\t\t========================= FIM ESTATÍSTICAS DE CADA TURMA ==================================')
+def print_global_dados(disciplinas, alunos):
+    print('\n\t\t\t================================== ESTATÍSTICAS GLOBAIS ==================================\n')
+    glb.get_media_global(disciplinas)
+    glb.get_perc_aprovacao(disciplinas)
+    glb.get_alunos_matriculados(alunos)
+    glb.get_aprovados_todas_materias(alunos)
+    glb.get_taxa_aprovacao(disciplinas)

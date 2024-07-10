@@ -27,7 +27,7 @@ def calculate_approved(cod, alunos, pesos, media, qtd_alunos):
     percentual = (qtd_aprovados / qtd_alunos) * 100
     media_turma = soma_turma / qtd_alunos
 
-    return percentual, media_turma
+    return percentual, media_turma, qtd_aprovados
 
 def calculate_notes(notas, pesos):
     soma_pesos = 0
@@ -45,7 +45,7 @@ def calculate_above_average(media_turma, medias_alunos):
     for media_aluno in medias_alunos:
         if media_aluno > media_turma:
             qtd_acima_media += 1
-    print('\t\tQuantidade de alunos acima da média da turma: ', qtd_acima_media)
+    print('\t\t# Quantidade de alunos acima da média da turma: ', qtd_acima_media)
     return qtd_acima_media
 
 # Pega as médias dos alunos de uma determinada matéria
@@ -84,7 +84,5 @@ def maior_menor_media(alunos, codigo_turma):
                         menor_media = media_aluno
                         menor_media_aluno = key
 
-    print(f"""
-        A maior média da turma: {maior_media:.1f} -- aluno de matrícula {maior_media_aluno}
-        A menor média da turma: {menor_media:.1f} --  aluno de matrícula {menor_media_aluno}
-    """)
+    print(f'\t\t# A maior média da turma: {maior_media:.1f} -- do aluno de matrícula {maior_media_aluno}')
+    print(f'\t\t# A menor média da turma: {menor_media:.1f} -- do aluno de matrícula {menor_media_aluno}')

@@ -34,8 +34,9 @@ def create_dict_disciplina(files):
 
         dados_dict['% DE APROVADOS'] = dados[0]
         dados_dict['MEDIA_TURMA'] = dados[1]
+        dados_dict['QTD_APROVADOS'] = dados[2]
 
 
-        dados_relatorio[f'{codigo_turma}'] = [disciplina[f'{codigo_turma}']['NOME'],disciplina[f'{codigo_turma}']['QUANTIDADE_ALUNOS'], disciplina[f'{codigo_turma}']['% DE APROVADOS'], disciplina[f'{codigo_turma}']['MEDIA_TURMA']]
+        dados_relatorio[f'{codigo_turma}'] = [disciplina[f'{codigo_turma}']['NOME'],disciplina[f'{codigo_turma}']['QUANTIDADE_ALUNOS'], disciplina[f'{codigo_turma}']['% DE APROVADOS'], disciplina[f'{codigo_turma}']['MEDIA_TURMA'], disciplina[f'{codigo_turma}']['QTD_APROVADOS']]
 
     return dados_relatorio, dict_alunos
