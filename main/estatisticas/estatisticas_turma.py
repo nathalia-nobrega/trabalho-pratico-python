@@ -14,31 +14,29 @@ def extract_discipline_data(file):
 
     return codigo, nome, pesos
 
+
 # Calcula o percentual de alunos aprovados na turma, a média da turma e a quantidade de alunos com nota acima da média
 def calculate_approved(cod, alunos, pesos, media, qtd_alunos):
     qtd_aprovados = 0
     soma_turma = 0
-    medias = getMediasAlunos(alunos, cod)
+    medias = get_medias_alunos(alunos, cod)
     for media_aluno in medias:
-            soma_turma += media_aluno
-            if media_aluno >= media:
-                qtd_aprovados += 1
+        soma_turma += media_aluno
+        if media_aluno >= media:
+            qtd_aprovados += 1
 
     percentual = (qtd_aprovados / qtd_alunos) * 100
     media_turma = soma_turma / qtd_alunos
 
     return percentual, media_turma, qtd_aprovados
 
+
 def calculate_notes(notas, pesos):
-    soma_pesos = 0
-    numerador = 0
-    for nota in notas:
-        for peso in pesos:
-            soma_pesos += peso
-            numerador += nota * peso
-            break
-    media_aluno = numerador / soma_pesos
+    numerador = (notas[0] * pesos[0]) + (notas[1] * pesos[1]) + (notas[2] * pesos[2])
+    denominador = pesos[0] + pesos[1] + pesos[2]
+    media_aluno = numerador / denominador
     return media_aluno
+
 
 def calculate_above_average(media_turma, medias_alunos):
     qtd_acima_media = 0
@@ -48,8 +46,9 @@ def calculate_above_average(media_turma, medias_alunos):
     print('\t\t# Quantidade de alunos acima da média da turma: ', qtd_acima_media)
     return qtd_acima_media
 
+
 # Pega as médias dos alunos de uma determinada matéria
-def getMediasAlunos(alunos, codigo_turma):
+def get_medias_alunos(alunos, codigo_turma):
     medias = []
     for values in alunos.values():
         if codigo_turma in values['matriculado_em']:
@@ -57,6 +56,7 @@ def getMediasAlunos(alunos, codigo_turma):
             media_aluno = values['media'][index]
             medias.append(media_aluno)
     return medias
+
 
 def maior_menor_media(alunos, codigo_turma):
     maior_media = 0.0

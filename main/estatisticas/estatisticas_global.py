@@ -6,6 +6,7 @@ def get_media_global(disciplinas):
     media_global = f'{soma_global / len(disciplinas):.1f}'
     print(f'\t\t# A média global das turmas do professor: {media_global}')
 
+
 # Percentual de aprovação do professor
 def get_perc_aprovacao(disciplinas):
     qtd_aprovados = 0
@@ -14,8 +15,9 @@ def get_perc_aprovacao(disciplinas):
         qtd_aprovados += disciplinas[disciplina][4]
         qtd_alunos_turma += disciplinas[disciplina][1]
 
-    taxa_aprovacao = f'{(qtd_aprovados/qtd_alunos_turma) * 100:.1f}'
+    taxa_aprovacao = f'{(qtd_aprovados / qtd_alunos_turma) * 100:.1f}'
     print(f'\t\t# A % de aprovação do professor: {taxa_aprovacao}%')
+
 
 # Quantidade de alunos matriculados em mais de 2 disciplinas do professor
 def get_alunos_matriculados(alunos):
@@ -25,6 +27,7 @@ def get_alunos_matriculados(alunos):
         if len(lista_matriculas) > 2:
             qtd_matriculados += 1
     print(f'\t\t# A quantidade de alunos matriculados em mais de 2 disciplinas do professor: {qtd_matriculados}')
+
 
 # Quantidade e percentual de alunos aprovados em TODAS as disciplinas que estavam matriculados
 def get_aprovados_todas_materias(alunos):
@@ -36,7 +39,9 @@ def get_aprovados_todas_materias(alunos):
         if all(aprovacao_lista):
             qtd_aprovados_todas += 1
     perc_aprovados_todas = f'{(qtd_aprovados_todas / qtd_alunos) * 100:.1f}%'
-    print(f'\t\t# A quantidade e o percentual de alunos aprovados em TODAS as disciplinas que estavam matriculados: {qtd_aprovados_todas} ({perc_aprovados_todas})')
+
+    format_output = f'\t\t# A quantidade e o percentual de alunos aprovados em TODAS as disciplinas que estavam matriculados: {qtd_aprovados_todas} ({perc_aprovados_todas})'
+    print(format_output)
 
 # Disciplinas com a maior e a menor taxa de aprovação: Nome e taxa
 def get_taxa_aprovacao(disciplinas):

@@ -3,6 +3,7 @@
 """
 import main.estatisticas.estatisticas_global as glb
 import main.estatisticas.estatisticas_turma as tur
+import main.estatisticas.estatisticas_aluno as ind
 
 
 def print_disciplina_dados(disciplinas, alunos):
@@ -12,7 +13,7 @@ def print_disciplina_dados(disciplinas, alunos):
         qtd_alunos = values[1]
         perc_aprovacao = f'{values[2]:.1f}%'
         media_turma = f'{values[3]:.1f}'
-        medias_alunos = tur.getMediasAlunos(alunos, key)
+        medias_alunos = tur.get_medias_alunos(alunos, key)
 
         print(f"""
     {nome}, {key}
@@ -33,3 +34,19 @@ def print_global_dados(disciplinas, alunos):
     glb.get_alunos_matriculados(alunos)
     glb.get_aprovados_todas_materias(alunos)
     glb.get_taxa_aprovacao(disciplinas)
+
+def print_individual_dados(disciplinas, alunos):
+    print('\n\t\t\t================================== ESTATÍSTICAS INDIVIDUAIS ==================================\n')
+    for matricula, aluno in alunos.items():
+        taxa_aprovacao = ind.get_taxa_aprovacao_aluno(matricula, aluno)
+        melhor_media, pior_media = ind.get_maior_media_aluno(aluno, disciplinas)
+
+        print(f"""
+    Estudante n° {matricula}
+    {taxa_aprovacao}
+    {melhor_media}
+    {pior_media}
+        """)
+
+        print('\t------------------------------------------------')
+

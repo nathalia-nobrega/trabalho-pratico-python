@@ -1,4 +1,4 @@
-from main.estatisticas.estatisticas_aluno import isApproved
+from main.estatisticas.estatisticas_aluno import is_approved
 from main.estatisticas.estatisticas_turma import calculate_notes
 from utils.read_file_data import read_data
 
@@ -13,7 +13,7 @@ def create_dict_alunos(alunos, disciplina_codigo, disciplina):
             matricula = dados_aluno[0]
 
             media_aluno = calculate_notes(dados_aluno[1], disciplina['PESOS'])
-            aprovado = isApproved(media_aluno, disciplina['MEDIA_MINIMA'])
+            aprovado = is_approved(media_aluno, disciplina['MEDIA_MINIMA'])
             codigo_turma = disciplina_codigo
 
             # Verificar se aluno já está matriculado em algum curso

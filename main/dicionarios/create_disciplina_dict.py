@@ -3,14 +3,14 @@ from main.estatisticas.estatisticas_turma import extract_discipline_data, calcul
 from utils.read_file_data import read_data
 
 
-def create_dict_disciplina(files):
+def create_dict_disciplina(files, path):
     disciplina = {}
 
     # Aqui ficam somente os dados que vão ser enviados ao resultado.txt
     dados_relatorio = {}
 
     for file in files:
-        data = read_data(file)
+        data = read_data(file, path)
 
         # Extraíndo os dados da disciplina
         dados_disciplina = extract_discipline_data(data)
