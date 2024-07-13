@@ -4,8 +4,8 @@ def get_media_global(disciplinas):
     for disciplina in disciplinas.values():
         soma_global += disciplina[3]
     media_global = f'{soma_global / len(disciplinas):.1f}'
-    print(f'\t\t# A média global das turmas do professor: {media_global}')
-
+    format = f'# A média global das turmas do professor: {media_global}'
+    return format
 
 # Percentual de aprovação do professor
 def get_perc_aprovacao(disciplinas):
@@ -16,7 +16,8 @@ def get_perc_aprovacao(disciplinas):
         qtd_alunos_turma += disciplinas[disciplina][1]
 
     taxa_aprovacao = f'{(qtd_aprovados / qtd_alunos_turma) * 100:.1f}'
-    print(f'\t\t# A % de aprovação do professor: {taxa_aprovacao}%')
+    format = f'# A % de aprovação do professor: {taxa_aprovacao}%'
+    return format
 
 
 # Quantidade de alunos matriculados em mais de 2 disciplinas do professor
@@ -26,7 +27,8 @@ def get_alunos_matriculados(alunos):
         lista_matriculas = aluno['matriculado_em']
         if len(lista_matriculas) > 2:
             qtd_matriculados += 1
-    print(f'\t\t# A quantidade de alunos matriculados em mais de 2 disciplinas do professor: {qtd_matriculados}')
+    format = f'# A quantidade de alunos matriculados em mais de 2 disciplinas do professor: {qtd_matriculados}'
+    return format
 
 
 # Quantidade e percentual de alunos aprovados em TODAS as disciplinas que estavam matriculados
@@ -40,8 +42,8 @@ def get_aprovados_todas_materias(alunos):
             qtd_aprovados_todas += 1
     perc_aprovados_todas = f'{(qtd_aprovados_todas / qtd_alunos) * 100:.1f}%'
 
-    format_output = f'\t\t# A quantidade e o percentual de alunos aprovados em TODAS as disciplinas que estavam matriculados: {qtd_aprovados_todas} ({perc_aprovados_todas})'
-    print(format_output)
+    format = f'# A quantidade e o percentual de alunos aprovados em TODAS as disciplinas que estavam matriculados: {qtd_aprovados_todas} ({perc_aprovados_todas})'
+    return format
 
 # Disciplinas com a maior e a menor taxa de aprovação: Nome e taxa
 def get_taxa_aprovacao(disciplinas):
@@ -66,5 +68,7 @@ def get_taxa_aprovacao(disciplinas):
                 elif value[2] < menor_taxa:
                     menor_taxa = value[2]
                     nome_menor = value[0]
-    print(f'\t\t# A disciplina com maior taxa de aprovação é {nome_maior}, com {maior_taxa:.1f}% de aprovados')
-    print(f'\t\t# A disciplina com menor taxa de aprovação é {nome_menor}, com {menor_taxa:.1f}% de aprovados')
+    format_maior = f'# A disciplina com maior taxa de aprovação é {nome_maior}, com {maior_taxa:.1f}% de aprovados'
+    format_menor = f'# A disciplina com menor taxa de aprovação é {nome_menor}, com {menor_taxa:.1f}% de aprovados'
+
+    return format_maior, format_menor
